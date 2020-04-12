@@ -8,6 +8,13 @@ else
     sed -i 's%auth_basic_user_file webdavpasswd;% %g' /etc/nginx/nginx.conf
 fi
 
+if [ -n "${WEBDAV_READONLY:-}" ] ; then
+        if [ "${WEBDAV_READONLY}" = "1" ] ; then
+                echo "Running in readonly mode"
+                sed -i 's%dav_methods%# dav_methodes%g' /etc/nginx/nginx.conf
+        fi
+fi
+
 if [ -n "${UID:-}" ]; then
     chmod go+w /dev/stderr /dev/stdout
     gosu $UID mkdir -p /media/.tmp
