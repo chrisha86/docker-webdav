@@ -1,9 +1,9 @@
-FROM ubuntu:xenial-20170410
+FROM ubuntu:bionic
 
 ARG http_proxy
 ARG https_proxy
 RUN apt-get update \
- && apt-get install -yq --no-install-recommends nginx-extras gosu apache2-utils \
+ && apt-get install -yq --no-install-recommends nginx-extras gosu apache2-utils libnginx-mod-http-dav-ext \
  && rm -rf /var/lib/apt/lists/*
 
 RUN ln -sf /dev/stderr /var/log/nginx/error.log
