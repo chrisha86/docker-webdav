@@ -9,9 +9,11 @@ RUN apt-get update \
 RUN ln -sf /dev/stderr /var/log/nginx/error.log
 RUN chmod go+rwX -R /var /run
 VOLUME /media
+VOLUME /config
 
 COPY entrypoint.sh /
 COPY nginx.conf /etc/nginx/
+COPY nginx-ssl.conf /etc/nginx/
 
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["nginx", "-g", "daemon off;"]

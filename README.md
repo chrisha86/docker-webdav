@@ -12,6 +12,8 @@ Optionally you can add two environment variables to require HTTP basic authentic
 * WEBDAV_USERNAME
 * WEBDAV_PASSWORD
 * WEBDAV_READONLY
+* WEBDAV_CERTIFICATE
+* WEBDAV_CERTIFICATE_KEY
 
 Example:
 
@@ -19,5 +21,8 @@ Example:
 docker run --restart always --detach --name webdav --publish 7000:8080 \
            --env WEBDAV_USERNAME=myuser --env WEBDAV_PASSWORD=mypassword \
            --env WEBDAV_READONLY=1 \
+           --env WEBDAV_CERTIFICATE=ssl-cert-snakeoil.pem \
+           --env WEBDAV_CERTIFICATE_KEY=ssl-cert-snakeoil.key \
+           --volume /mnt/data/certs:/config \
            --env UID=$UID --volume $PWD:/media ionelmc/webdav
 ```
