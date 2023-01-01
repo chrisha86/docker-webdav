@@ -1,0 +1,16 @@
+version: "3"
+services:
+    app:
+        image: docker-webdav
+        ports:
+            - ${WEBDAV_PORT}:8080
+        volumes:
+            - ./config:/config
+            - ./data:/media
+        environment:
+            - WEBDAV_USERNAME=${WEBDAV_USERNAME}
+            - WEBDAV_PASSWORD=${WEBDAV_PASSWORD}
+            - WEBDAV_READONLY=${WEBDAV_READONLY}
+            - WEBDAV_CERTIFICATE=${WEBDAV_CERTIFICATE}
+            - WEBDAV_CERTIFICATE_KEY=${WEBDAV_CERTIFICATE_KEY}
+            - UID=${WEBDAV_UID}
